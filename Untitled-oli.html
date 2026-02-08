@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dla Oliwii ❤️</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffe6e6; /* Jasny róż */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden; /* Żeby przycisk nie uciekł poza ekran */
+            text-align: center;
+        }
+
+        h1 {
+            color: #d6336c;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            position: relative;
+            display: flex;
+            gap: 20px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            font-weight: bold;
+        }
+
+        #yesBtn {
+            background-color: #28a745;
+            color: white;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+        }
+
+        #yesBtn:hover {
+            transform: scale(1.1);
+        }
+
+        #noBtn {
+            background-color: #dc3545;
+            color: white;
+            box-shadow: 0 4px 15px rgba(220, 53, 69, 0.4);
+            position: relative; /* Ważne dla skryptu */
+        }
+
+        /* Ukryty kontener z niespodzianką */
+        #result {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeIn 1s;
+        }
+
+        #result img {
+            max-width: 300px;
+            border-radius: 15px;
+            margin-top: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="question-container">
+        <h1>Oliwia, czy zostaniesz moją Walentynką? 🌹</h1>
+        <div class="buttons">
+            <button id="yesBtn" onclick="acceptLove()">TAK!</button>
+            <button id="noBtn" onmouseover="moveButton()" onclick="moveButton()">Nie</button>
+        </div>
+    </div>
+
+    <div id="result">
+        <h1>Jeeej! Wiedziałem! ❤️ Do zobaczenia!</h1>
+        <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" alt="Cute cat">
+    </div>
+
+    <script>
+        function moveButton() {
+            const btn = document.getElementById('noBtn');
+            // Pobierz wymiary okna
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+            
+            // Wylosuj nową pozycję, ale z marginesem, żeby nie uciekł za ekran
+            const newX = Math.random() * (windowWidth - 150);
+            const newY = Math.random() * (windowHeight - 100);
+
+            // Zmień pozycję na absolutną, aby mógł się swobodnie poruszać
+            btn.style.position = 'absolute';
+            btn.style.left = newX + 'px';
+            btn.style.top = newY + 'px';
+        }
+
+        function acceptLove() {
+            // Ukryj pytanie
+            document.getElementById('question-container').style.display = 'none';
+            // Pokaż wynik
+            document.getElementById('result').style.display = 'flex';
+            
+            // Opcjonalnie: dodaj konfetti lub dźwięk tutaj
+        }
+    </script>
+
+</body>
+</html>
